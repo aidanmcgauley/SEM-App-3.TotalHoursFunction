@@ -2,10 +2,19 @@ image: ubuntu:18.04
 stages:
   - test
 
-test:
+test_add_hours:
   stage: test
   script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
     - cd src
-    - python3 -m unittest test
+    - python3 -m unittest test_addHours
+
+test_index:
+  stage: test
+  script:
+    - apt-get update -qy
+    - apt-get install -y python3-pip python3
+    - apt-get install -y python3-flask
+    - cd src
+    - python3 -m unittest test_index
