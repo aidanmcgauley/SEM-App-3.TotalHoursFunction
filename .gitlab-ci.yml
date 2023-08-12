@@ -1,0 +1,11 @@
+image: ubuntu:18.04
+stages:
+  - test
+
+test:
+  stage: test
+  scripts:
+    - apt-get update -qy
+    - apt-get install -y python3-pip python3
+    - cd src
+    - python3 -m unittest test

@@ -1,23 +1,10 @@
 from flask import Flask, request, jsonify
 # Necessary to import Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible.
 from flask_cors import CORS 
+from addHours import add_hours
 
 app = Flask(__name__)
 CORS(app) 
-
-@app.route('/old', methods=['GET'])
-def total_hoursOld():
-
-    # Zero returned as default value if no value provided for attendance
-    attendance_1 = int(request.args.get('attendance_1', 0))
-    attendance_2 = int(request.args.get('attendance_2', 0))
-    attendance_3 = int(request.args.get('attendance_3', 0))
-    attendance_4 = int(request.args.get('attendance_4', 0))
-    
-    total = attendance_1 + attendance_2 + attendance_3 + attendance_4
-    
-    return jsonify({'total_hours': total})
-
 
 @app.route('/', methods=['GET'])
 def total_hours():
@@ -34,11 +21,17 @@ def total_hours():
         attendance = attendances[i]
         total_assigned_hours = total_hours[i]  # Get the corresponding total hours
 
+        # Check that the user has entered an int for every attentance value
         try:
             attendance = int(attendance)
+        except ValueError:
+            return jsonify({"error": True, "message": "Attendance hours must be integers."}), 400
+        
+        # Check that all the total hours have been 
+        try:
             total_assigned_hours = int(total_assigned_hours)
         except ValueError:
-            return jsonify({"error": True, "message": "Attendance hours and total hours must be integers."}), 400
+            return jsonify({"error": True, "message": "A valid number for total hours has not been entered in the frontend code."}), 400
 
         # Check if attendance is within an acceptable range
         if attendance > total_assigned_hours:
@@ -53,9 +46,9 @@ def total_hours():
             return jsonify({"error": True, "message": "Total hours cannot be negative."}), 400
 
     # Compute the total
-    total = sum([int(attendance) for attendance in attendances])
+    total = add_hours(attendances)
 
-    # You can add the sorted attendance or any other required information to the response
+    # Add the total or any other required information to the response
     return jsonify({'total_hours': total})
 
 
