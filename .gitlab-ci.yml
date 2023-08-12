@@ -4,7 +4,7 @@ stages:
 
 test:
   stage: test
-  scripts:
+  script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
     - cd src
