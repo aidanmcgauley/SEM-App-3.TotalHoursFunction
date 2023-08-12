@@ -27,7 +27,7 @@ def total_hours():
         except ValueError:
             return jsonify({"error": True, "message": "Attendance hours must be integers."}), 400
         
-        # Check that all the total hours have been 
+        # Check that all the total hours have been entered in code correctly
         try:
             total_assigned_hours = int(total_assigned_hours)
         except ValueError:
