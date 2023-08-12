@@ -1,9 +1,10 @@
 image: ubuntu:18.04
 stages:
-  - test
+  - test1
+  - test2
 
 test_add_hours:
-  stage: test
+  stage: test1
   script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
@@ -11,7 +12,7 @@ test_add_hours:
     - python3 -m unittest test_addHours
 
 test_index:
-  stage: test
+  stage: test2
   script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
