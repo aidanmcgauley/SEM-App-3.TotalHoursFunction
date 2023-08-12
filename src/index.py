@@ -33,10 +33,6 @@ def total_hours():
         except ValueError:
             return jsonify({"error": True, "message": "A valid number for total hours has not been entered in the frontend code."}), 400
 
-        # Check if attendance is within an acceptable range
-        if attendance > total_assigned_hours:
-            return jsonify({"error": True, "message": "Attendance hours cannot exceed total assigned hours."}), 400
-
         # Check if attendance is non-negative
         if attendance < 0:
             return jsonify({"error": True, "message": "Attendance hours cannot be negative."}), 400
@@ -44,6 +40,11 @@ def total_hours():
         # Check if total hours is non-negative
         if total_assigned_hours < 0:
             return jsonify({"error": True, "message": "Total hours cannot be negative."}), 400
+        
+        # Check if attendance is within an acceptable range
+        if attendance > total_assigned_hours:
+            return jsonify({"error": True, "message": "Attendance hours cannot exceed total assigned hours."}), 400
+
 
     # Compute the total
     total = add_hours(attendances)
