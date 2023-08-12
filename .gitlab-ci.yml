@@ -16,6 +16,7 @@ test_index:
   script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
+    - pip3 install Flask-CORS
     - apt-get install -y python3-flask
     - cd src
     - python3 -m unittest test_index
