@@ -1,29 +1,22 @@
 image: ubuntu:18.04
 stages:
-  - build
   - test1
   - test2
 
-build:
-  stage: build
+test_add_hours:
+  stage: test1
+  script:
+    - apt-get update -qy
+    - apt-get install -y python3-pip python3
+    - cd src
+    - python3 -m unittest test_addHours
+
+test_index:
+  stage: test2
   script:
     - apt-get update -qy
     - apt-get install -y python3-pip python3
     - pip3 install Flask-CORS
     - apt-get install -y python3-flask
-
-test_add_hours:
-  stage: test1
-  script:
-    - cd src
-    - python3 -m unittest test_addHours
-  dependencies:
-    - build
-
-test_index:
-  stage: test2
-  script:
     - cd src
     - python3 -m unittest test_index
-  dependencies:
-    - build
