@@ -13,7 +13,8 @@ build:
     - apt-get install -y python3-flask
   artifacts:
     paths:
-      - src/*
+      - src/*.py 
+      - src/tests/
 
 test_add_hours:
   stage: test1
