@@ -17,9 +17,13 @@ test_add_hours:
   script:
     - cd src
     - python3 -m unittest test_addHours
+  dependencies:
+    - build
 
 test_index:
   stage: test2
   script:
     - cd src
     - python3 -m unittest test_index
+  dependencies:
+    - build
