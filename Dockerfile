@@ -11,7 +11,7 @@ COPY src/ /app
 RUN pip install Flask flask-cors
 
 # Make port 8003 available to the world outside this container
-EXPOSE 8003
+EXPOSE 80
 
 # Define environment variable to tell Flask where to find the app
 ENV FLASK_APP=index.py
