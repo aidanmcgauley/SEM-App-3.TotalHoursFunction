@@ -17,4 +17,4 @@ EXPOSE 8003
 ENV FLASK_APP=index.py
 
 # Run Flask app when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8003"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]

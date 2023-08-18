@@ -19,7 +19,7 @@ def total_hours():
 
     for i in range(len(attendances)):
         attendance = attendances[i]
-        total_assigned_hours = total_hours[i]  # Get the corresponding total hours
+        total_assigned_hours = total_hours[i]  # Getting the corresponding total hours
 
         # Check that the user has entered an int for every attentance value
         try:
@@ -45,13 +45,12 @@ def total_hours():
         if attendance > total_assigned_hours:
             return jsonify({"error": True, "message": "Attendance hours cannot exceed total assigned hours."}), 400
 
-
     # Compute the total
     total = add_hours(attendances)
 
-    # Add the total or any other required information to the response
+    # Add the total to response
     return jsonify({'total_hours': total})
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8003)
+    app.run(debug=True, host='0.0.0.0', port=80)
